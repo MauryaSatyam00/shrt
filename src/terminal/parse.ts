@@ -8,9 +8,10 @@ function tokenize(s: string): string[] {
 
 export function parse(raw: string): Parsed {
   const trimmed = raw.trim();
-  if (/^https?:\/\/\S+$/i.test(trimmed))
-    return { raw, cmd: "shorten", args: [trimmed], flags: {} };
-  const [cmd = "", ...rest] = tokenize(trimmed);
+  const tokens = tokenize(trimmed);
+  if (/^https?:\/\//i.test(tokens[0] ?? ""))
+    return { raw, cmd: "shorten", args: tokens, flags: {} };
+  const [cmd = "", ...rest] = tokens;
   const args: string[] = []; const flags: Record<string, string | true> = {};
   for (let i = 0; i < rest.length; i++) {
     const t = rest[i];
