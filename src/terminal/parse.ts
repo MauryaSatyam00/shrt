@@ -7,7 +7,10 @@ function tokenize(s: string): string[] {
 }
 
 export function parse(raw: string): Parsed {
-  const [cmd = "", ...rest] = tokenize(raw.trim());
+  const trimmed = raw.trim();
+  if (/^https?:\/\/\S+$/i.test(trimmed))
+    return { raw, cmd: "shorten", args: [trimmed], flags: {} };
+  const [cmd = "", ...rest] = tokenize(trimmed);
   const args: string[] = []; const flags: Record<string, string | true> = {};
   for (let i = 0; i < rest.length; i++) {
     const t = rest[i];

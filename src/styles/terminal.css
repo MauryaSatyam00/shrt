@@ -13,6 +13,8 @@ body {
 #screen::-webkit-scrollbar { width: 6px; } #screen::-webkit-scrollbar-thumb { background: var(--fg-dim); }
 
 .line { white-space: pre-wrap; word-break: break-word; min-height: 1.35em; }
+.line, #out { user-select: text; }
+.line::selection, #out::selection { background: var(--fg); color: var(--bg); text-shadow: none; }
 .line a { color: var(--fg-bright); text-decoration: underline dotted; }
 .echo { color: var(--fg-dim); } .echo .ps1 { color: var(--fg); }
 .dim { color: var(--fg-dim); } .bright, .ok { color: var(--fg-bright); }

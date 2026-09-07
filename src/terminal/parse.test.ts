@@ -14,4 +14,7 @@ describe("parse", () => {
     expect(parse(`s "https://x.com/a b" 'my alias'`).args).toEqual(["https://x.com/a b", "my alias"]);
   });
   it("empty input", () => expect(parse("   ").cmd).toBe(""));
+  it("treats a bare URL as a shorten command", () => {
+    expect(parse("https://example.com")).toMatchObject({ cmd: "shorten", args: ["https://example.com"] });
+  });
 });
