@@ -105,6 +105,7 @@ export function Terminal() {
 
   function onKey(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") { e.preventDefault(); submit(); }
+    else if (e.key === " ") { e.preventDefault(); }
     else if (e.key === "Tab") { e.preventDefault(); if (!prompt) complete(); }
     else if (e.key === "ArrowUp" && !prompt) { e.preventDefault(); setInput(history.prev()); }
     else if (e.key === "ArrowDown" && !prompt) { e.preventDefault(); setInput(history.next()); }
@@ -125,7 +126,7 @@ export function Terminal() {
       <input
         ref={inputRef} className="ghost-input" autoFocus autoComplete="off" autoCapitalize="off" spellCheck={false}
         type={prompt?.mask ? "password" : "text"} value={input}
-        onChange={(e) => setInput(e.target.value)} onKeyDown={onKey} onBlur={() => setTimeout(focus, 50)}
+        onChange={(e) => setInput(e.target.value)} onKeyDown={onKey}
       />
     </div>
   );
