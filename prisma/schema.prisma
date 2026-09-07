@@ -1,0 +1,47 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  handle       String   @unique
+  passwordHash String
+  apiKey       String   @unique
+  createdAt    DateTime @default(now())
+  links        Link[]
+}
+
+model Link {
+  id        String    @id @default(cuid())
+  code      String    @unique
+  url       String
+  userId    String?
+  user      User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  createdAt DateTime  @default(now())
+  expiresAt DateTime?
+  clicks    Click[]
+
+  @@index([userId])
+}
+
+model Click {
+  id          BigInt   @id @default(autoincrement())
+  linkId      String
+  link        Link     @relation(fields: [linkId], references: [id], onDelete: Cascade)
+  ts          DateTime @default(now())
+  referrer    String?
+  country     String?
+  browser     String?
+  os          String?
+  device      String?
+  visitorHash String
+
+  @@index([linkId, ts])
+}

@@ -1,0 +1,4 @@
+server/test
+**/*.test.ts
+docker-compose.yml
+.github
