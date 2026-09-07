@@ -12,8 +12,12 @@ import { qrMatrix, qrPng, qrSvg } from "../services/qr.js";
 
 export const linksRouter = Router();
 
-export const base = () =>
-  (process.env.BASE_URL ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:5173")).replace(/\/$/, "");
+export const base = () => {
+  const configured = process.env.BASE_URL?.replace(/\/$/, "");
+  const isLocal = !configured || /^https?:\/\/(localhost|127\.0\.0\.1)(?::\d+)?$/i.test(configured);
+  if (isLocal && process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return configured ?? "http://localhost:5173";
+};
 
 type LinkRow = { code: string; url: string; createdAt: Date; expiresAt: Date | null; userId: string | null; _count?: { clicks: number } };
 const toDTO = (l: LinkRow, uid?: string): LinkDTO => ({

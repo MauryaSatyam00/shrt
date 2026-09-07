@@ -48,7 +48,7 @@ export function Terminal() {
     boot(print, sessionRef.current?.handle ?? null);
   }, [print]);
 
-  useEffect(() => { const el = screenRef.current; if (el) el.scrollTop = el.scrollHeight; }, [lines, prompt, input]);
+  useEffect(() => { const el = screenRef.current; if (el) el.scrollTop = el.scrollHeight; }, [lines, prompt]);
 
   const focus = () => { if (!window.getSelection()?.toString()) inputRef.current?.focus(); };
   const focusScreen = () => focus();
