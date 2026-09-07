@@ -51,9 +51,7 @@ export function Terminal() {
   useEffect(() => { const el = screenRef.current; if (el) el.scrollTop = el.scrollHeight; }, [lines, prompt, input]);
 
   const focus = () => { if (!window.getSelection()?.toString()) inputRef.current?.focus(); };
-  const focusScreen = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) focus();
-  };
+  const focusScreen = () => focus();
 
   async function run(raw: string) {
     print(`${ps1} ${raw}`, "echo");
@@ -105,7 +103,6 @@ export function Terminal() {
 
   function onKey(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") { e.preventDefault(); submit(); }
-    else if (e.key === " ") { e.preventDefault(); }
     else if (e.key === "Tab") { e.preventDefault(); if (!prompt) complete(); }
     else if (e.key === "ArrowUp" && !prompt) { e.preventDefault(); setInput(history.prev()); }
     else if (e.key === "ArrowDown" && !prompt) { e.preventDefault(); setInput(history.next()); }
