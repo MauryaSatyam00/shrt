@@ -4,7 +4,7 @@ import {
   EXPIRY_OPTIONS,
   RESERVED,
   STATS_RANGES,
-} from "./constants";
+} from "./constants.js";
 
 export const UrlSchema = z
   .string()
