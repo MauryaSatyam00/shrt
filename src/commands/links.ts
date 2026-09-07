@@ -74,11 +74,13 @@ const open: Command = {
 };
 
 const copy: Command = {
-  name: "copy", usage: "copy <code>", desc: "copy short URL to clipboard",
+  name: "copy", usage: "copy <code-or-url>", desc: "copy short URL to clipboard",
   async run(ctx) {
-    const code = ctx.args[0]; if (!code) return ctx.print("usage: copy <code>", "err");
-    try { await navigator.clipboard.writeText(shortUrl(code)); ctx.print(`copied ${shortUrl(code)}`, "ok"); }
-    catch { ctx.print(`clipboard blocked — here it is: ${shortUrl(code)}`, "err"); }
+    const value = ctx.args[0]; if (!value) return ctx.print(`usage: ${this.usage}`, "err");
+    const code = value.match(/^https?:\/\/[^/]+\/([A-Za-z0-9_-]{3,32})\/?$/i)?.[1] ?? value;
+    const url = shortUrl(code);
+    try { await navigator.clipboard.writeText(url); ctx.print(`copied ${url}`, "ok"); }
+    catch { ctx.print(`clipboard blocked — here it is: ${url}`, "err"); }
   },
 };
 

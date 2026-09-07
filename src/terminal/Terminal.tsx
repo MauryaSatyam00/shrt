@@ -51,6 +51,9 @@ export function Terminal() {
   useEffect(() => { const el = screenRef.current; if (el) el.scrollTop = el.scrollHeight; }, [lines, prompt, input]);
 
   const focus = () => { if (!window.getSelection()?.toString()) inputRef.current?.focus(); };
+  const focusScreen = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) focus();
+  };
 
   async function run(raw: string) {
     print(`${ps1} ${raw}`, "echo");
@@ -112,7 +115,7 @@ export function Terminal() {
   const display = prompt?.mask ? "•".repeat(input.length) : input;
 
   return (
-    <div id="screen" ref={screenRef} onClick={focus}>
+    <div id="screen" ref={screenRef} onClick={focusScreen}>
       <div id="out">{lines.map((l) => <LineView key={l.id} line={l} />)}</div>
       <div className="line">
         <span className="bright">{prompt ? prompt.label : ps1}</span>{" "}
