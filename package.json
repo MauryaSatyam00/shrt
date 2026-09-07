@@ -2,7 +2,7 @@
   "name": "shrt-bbs",
   "private": true,
   "type": "module",
-  "engines": { "node": "20.x" },
+  "engines": { "node": "24.x" },
   "scripts": {
     "dev": "concurrently -n api,web -c yellow,green \"tsx watch server/dev.ts\" \"vite\"",
     "build": "prisma generate && prisma migrate deploy && vite build",
