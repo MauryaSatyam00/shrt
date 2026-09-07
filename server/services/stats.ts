@@ -1,6 +1,6 @@
-import { RANGE_MS, type StatsRange } from "../../shared/constants";
-import type { Bucket, StatsDTO } from "../../shared/schemas";
-import { prisma } from "../db";
+import { RANGE_MS, type StatsRange } from "../../shared/constants.js";
+import type { Bucket, StatsDTO } from "../../shared/schemas.js";
+import { prisma } from "../db.js";
 
 const top = (m: Map<string, number>, n = 8): Bucket[] =>
   [...m.entries()]

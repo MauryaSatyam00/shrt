@@ -1,10 +1,10 @@
 import { Router } from "express";
 import rateLimit from "express-rate-limit";
-import { prisma } from "../db";
-import { ah } from "../middleware/error";
-import { buildClick } from "../services/analytics";
-import { qrPng } from "../services/qr";
-import { base } from "./links";
+import { prisma } from "../db.js";
+import { ah } from "../middleware/error.js";
+import { buildClick } from "../services/analytics.js";
+import { qrPng } from "../services/qr.js";
+import { base } from "./links.js";
 
 export const redirectRouter = Router();
 const CODE = "([A-Za-z0-9_-]{3,32})";

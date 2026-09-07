@@ -1,7 +1,7 @@
 import type { Request, RequestHandler } from "express";
 import type { User } from "@prisma/client";
-import { prisma } from "../db";
-import { HttpError, ah } from "./error";
+import { prisma } from "../db.js";
+import { HttpError, ah } from "./error.js";
 
 declare global { namespace Express { interface Request { user?: User } } }
 

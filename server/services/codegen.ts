@@ -1,6 +1,6 @@
 import { randomInt } from "node:crypto";
-import { CODE_ALPHABET, CODE_LENGTH } from "../../shared/constants";
-import { prisma } from "../db";
+import { CODE_ALPHABET, CODE_LENGTH } from "../../shared/constants.js";
+import { prisma } from "../db.js";
 
 export const randomCode = (len = CODE_LENGTH) =>
   Array.from({ length: len }, () => CODE_ALPHABET[randomInt(CODE_ALPHABET.length)]).join("");

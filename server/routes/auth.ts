@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { LoginSchema, type LoginDTO, type MeDTO } from "../../shared/schemas";
-import { prisma } from "../db";
-import { HttpError, ah } from "../middleware/error";
-import { requireAuth } from "../middleware/auth";
-import { hashPassword, newApiKey, verifyPassword } from "../services/password";
+import { LoginSchema, type LoginDTO, type MeDTO } from "../../shared/schemas.js";
+import { prisma } from "../db.js";
+import { HttpError, ah } from "../middleware/error.js";
+import { requireAuth } from "../middleware/auth.js";
+import { hashPassword, newApiKey, verifyPassword } from "../services/password.js";
 
 export const authRouter = Router();
 const sysopId = async () => (await prisma.user.findFirst({ orderBy: { createdAt: "asc" }, select: { id: true } }))?.id;

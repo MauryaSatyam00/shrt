@@ -1,7 +1,7 @@
 {
   "name": "shrt-bbs",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
   "engines": { "node": "24.x" },
   "scripts": {
     "dev": "concurrently -n api,web -c yellow,green \"tsx watch server/dev.ts\" \"vite\"",

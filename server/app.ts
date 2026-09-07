@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import { authRouter } from "./routes/auth";
-import { linksRouter } from "./routes/links";
-import { redirectRouter } from "./routes/redirect";
-import { errorHandler } from "./middleware/error";
+import { authRouter } from "./routes/auth.js";
+import { linksRouter } from "./routes/links.js";
+import { redirectRouter } from "./routes/redirect.js";
+import { errorHandler } from "./middleware/error.js";
 
 export const app = express();
 app.set("trust proxy", 1);

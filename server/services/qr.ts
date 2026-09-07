@@ -1,5 +1,5 @@
 import QRCode from "qrcode";
-import type { QrMatrixDTO } from "../../shared/schemas";
+import type { QrMatrixDTO } from "../../shared/schemas.js";
 
 export const qrSvg = (text: string, size: number) =>
   QRCode.toString(text, { type: "svg", width: size, margin: 2, color: { dark: "#000000", light: "#ffffff" } });

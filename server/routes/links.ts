@@ -1,14 +1,14 @@
 import { Router } from "express";
 import rateLimit from "express-rate-limit";
 import { z } from "zod";
-import { EXPIRY_MS } from "../../shared/constants";
-import { CreateLinkSchema, StatsQuerySchema, type LinkDTO } from "../../shared/schemas";
-import { prisma } from "../db";
-import { optionalAuth, requireAuth } from "../middleware/auth";
-import { HttpError, ah } from "../middleware/error";
-import { uniqueCode } from "../services/codegen";
-import { linkStats } from "../services/stats";
-import { qrMatrix, qrPng, qrSvg } from "../services/qr";
+import { EXPIRY_MS } from "../../shared/constants.js";
+import { CreateLinkSchema, StatsQuerySchema, type LinkDTO } from "../../shared/schemas.js";
+import { prisma } from "../db.js";
+import { optionalAuth, requireAuth } from "../middleware/auth.js";
+import { HttpError, ah } from "../middleware/error.js";
+import { uniqueCode } from "../services/codegen.js";
+import { linkStats } from "../services/stats.js";
+import { qrMatrix, qrPng, qrSvg } from "../services/qr.js";
 
 export const linksRouter = Router();
 
